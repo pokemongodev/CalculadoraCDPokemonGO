@@ -7,7 +7,6 @@
     <title>Calculadora de Cooldown Pokémon GO</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="manifest" href="../site.webmanifest">
     <link rel="apple-touch-icon" href="../icon.png">
     <link rel="shortcut icon" href="../favicon.ico">
     <!-- Place favicon.ico in the root directory -->
@@ -22,101 +21,107 @@
     <!--[if lte IE 9]>
 <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
 <![endif]-->
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark primary-color">
-        <a class="navbar-brand" href="#">Calculadora CD PokemonGO</a>
-    </nav>
-    <!-- Page Content -->
-    <div class="container mt-2">
-        <div class="row border">
-            <div class="col-md-12">
-                <h2 class="text-center">Calculadora CD Pokémon GO</h2>
-            </div>
-            <div class="col-md-12">
-                <h3>Instrucciones de uso:</h3>
-                <ul>
-                    <li>
-                        Introduce cada coordenada en su correspondiente cuadro de texto
-                        <ul>
-                            <li>
-                                Las coordenadas deben estar en formato decimal, es decir, no pude haber ninguna letra o símbolo . Sólo números.
-                            </li>
-                            <li>
-                                Cada coordenada debe estar compuesta de dos bloques separados por una coma
-                            </li>
-                            <li>
-                                Ejemplo de coordenada válida:
-                                <span style="color:green;"> 25.03181317, 121.50980</span>
-                            </li>
-                            <li>Ejemplo de coordenada NO válida:
-                                <span style="color:red;">36°16'55.6"N 115°17'45.2"W</span>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        Una vez hayas introducido las 2 coordenadas en sus correspondientes huecos,pulsa calcular distancia
-                    </li>
-                </ul>
-            </div>
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark primary-color">
+    <a class="navbar-brand" href="#">Calculadora CD PokemonGO</a>
+</nav>
+<!-- Page Content -->
+<div class="container-fluid px-4 mt-3">
+    <div class="row border">
+        <div class="col-md-12">
+            <h2 class="text-center">Calculadora CD Pokémon GO</h2>
         </div>
-        <div class="row border mt-4">
-            <div class="col-md-12 mt-3">
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="coordenada-1">Coordenada 1</span>
-                    </div>
-                    <input type="text" class="form-control" aria-describedby="coordenada-1" name="coordenada1" id="coordenada1">
-                </div>
-            </div>
-            <div class="col-md-12">
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="coordenada-2">
-                            Coordenada 2
-                        </span>
-                    </div>
-                    <input type="text" class="form-control" aria-describedby="coordenada-2" name="coordenada2" id="coordenada2">
-                </div>
-            </div>
-        </div>
-        <div class="row mt-4 border">
-            <div class="col-md-12 mt-2">
-                <button id="calcular" class="btn btn-lg btn-block btn-success">
-                    Calcular Distancia
-                </button>
-                <button id="borrar" class="btn btn-lg btn-block btn-danger mb-4">
-                    Borrar datos
-                </button>
-            </div>
-        </div>
-        <div class="row mt-4 border d-none text-center lead" id="zonaresultado">
-            <div class="col-md-12 mt-2">
-                <p id="resultado"></p>
-            </div>
+        <div class="col-md-12">
+            <h3>Instrucciones de uso:</h3>
+            <ul>
+                <li>
+                    Introduce cada coordenada en su correspondiente cuadro de texto
+                    <ul>
+                        <li>
+                            Las coordenadas deben estar en formato decimal, es decir, no pude haber ninguna letra o símbolo . Sólo números.
+                        </li>
+                        <li>
+                            Cada coordenada debe estar compuesta de dos bloques separados por una coma
+                        </li>
+                        <li>
+                            Ejemplo de coordenada válida:
+                            <span style="color:green;"> 25.03181317, 121.50980</span>
+                        </li>
+                        <li>Ejemplo de coordenada NO válida:
+                            <span style="color:red;">36°16'55.6"N 115°17'45.2"W</span>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    Una vez hayas introducido las 2 coordenadas en sus correspondientes huecos,pulsa calcular distancia
+                </li>
+            </ul>
         </div>
     </div>
-    <!-- Bootstrap core JavaScript -->
-    <!-- JQuery -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-    <!-- Bootstrap tooltips -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
-    <!-- Bootstrap core JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <!-- MDB core JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.0/js/mdb.min.js"></script>
-    <script src="./js/script.js"></script>
-    <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
-    <script>
-        window.ga = function() {
-            ga.q.push(arguments)
-        };
-        ga.q = [];
-        ga.l = +new Date;
-        ga('create', 'UA-XXXXX-Y', 'auto');
-        ga('send', 'pageview')
+    <div class="row border mt-3 pt-2 pb-4">
+        <div class="col-md-12">
+            <div class="input-group mt-2">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="coordenada-1">Coordenada 1</span>
+                </div>
+                <input type="text" class="form-control" aria-describedby="coordenada-1" name="coordenada1" id="coordenada1">
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="input-group mt-2">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="coordenada-2">
+                        Coordenada 2
+                    </span>
+                </div>
+                <input type="text" class="form-control" aria-describedby="coordenada-2" name="coordenada2" id="coordenada2">
+            </div>
+            <div class="input-group mt-2">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Google Maps URL</span>
+                </div>
+                <input type="text" class="form-control" aria-describedby="googlemapurl" name="googlemapurl" id="googlemapurl">
+            </div>
+        </div>
+        <div class="col-md-12">
+            <button id="calcular" class="btn btn-lg btn-block btn-success mt-2">
+                Calcular Distancia
+            </button>
+            <button id="borrar" class="btn btn-lg btn-block btn-danger mt-2">
+                Borrar datos
+            </button>
+            <button id="extract" class="btn btn-lg btn-block btn-warning mt-2">
+                Extract Coordinates
+            </button>
+        </div>
+    </div>
+    <div class="row mt-4 border d-none text-center lead" id="zonaresultado">
+        <div class="col-md-12 ">
+            <p id="resultado"></p>
+        </div>
+    </div>
+</div>
+<!-- Bootstrap core JavaScript -->
+<!-- JQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.0/js/mdb.min.js"></script>
+<script src="./js/script.js"></script>
+<!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+<script>
+    window.ga = function() {
+        ga.q.push(arguments)
+    };
+    ga.q = [];
+    ga.l = +new Date;
+    ga('create', 'UA-XXXXX-Y', 'auto');
+    ga('send', 'pageview')
 
-    </script>
-    <script src="https://www.google-analytics.com/analytics.js" async defer></script>
+</script>
+<script src="https://www.google-analytics.com/analytics.js" async defer></script>
 </body>
-
 </html>

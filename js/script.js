@@ -234,9 +234,29 @@ $("#calcular").click(function () {
     window.location.href = "#zonaresultado";
 });
 
+
+
+$('#extract').click(function() {
+    var url = $('input[name=googlemapurl]').val();
+    Reg = /^https?\:\/\/(www\.|maps\.)?google(\.[a-z]+){1,2}\/maps\/?\?([^&]+&)*(ll=-?[0-9]{1,2}\.[0-9]+,-?[0-9]{1,2}\.[0-9]+|q=[^&]+)+($|&)/;
+    Reg2 = /^https?\:\/\/(www\.|intel\.)?ingress(\.[a-z]+){1,2}\/intel\/?\?([^&]+&)*(ll=-?[0-9]{1,2}\.[0-9]+,-?[0-9]{1,2}\.[0-9]+|q=[^&]+)+($|&)/;
+    Reg3 = /@(-?\d+\.\d+),(-?\d+\.\d+),(\d+\.?\d?)+z/;
+    var match = url.match(Reg);
+    var match2 = url.match(Reg2);
+    var match3 = url.match(Reg3);
+    if (match || match2 || match3){
+        $('input[name=googlemapurl]').val("Yay!");
+    }else{
+        $('input[name=googlemapurl]').val("nope");
+    }
+});
+
+
+
 $("#borrar").click(function () {
-   $("#coordenada1").val("");
-   $("#coordenada2").val("");
-   location.reload();
-   location.href=".";
+ $("#coordenada1").val("");
+ $("#coordenada2").val("");
+ $("#googlemapurl").val("");
+ location.reload();
+ location.href=".";
 });
