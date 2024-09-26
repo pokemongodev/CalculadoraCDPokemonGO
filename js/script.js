@@ -1,242 +1,254 @@
-//:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-//:::                                                                         :::
-//:::  This routine calculates the distance between two points (given the     :::
-//:::  latitude/longitude of those points). It is being used to calculate     :::
-//:::  the distance between two locations using GeoDataSource (TM) prodducts  :::
-//:::                                                                         :::
-//:::  Definitions:                                                           :::
-//:::    South latitudes are negative, east longitudes are positive           :::
-//:::                                                                         :::
-//:::  Passed to function:                                                    :::
-//:::    lat1, lon1 = Latitude and Longitude of point 1 (in decimal degrees)  :::
-//:::    lat2, lon2 = Latitude and Longitude of point 2 (in decimal degrees)  :::
-//:::    unit = the unit you desire for results                               :::
-//:::           where: 'M' is statute miles (default)                         :::
-//:::                  'K' is kilometers                                      :::
-//:::                  'N' is nautical miles                                  :::
-//:::                                                                         :::
-//:::  Worldwide cities and other features databases with latitude longitude  :::
-//:::  are available at https://www.geodatasource.com                         :::
-//:::                                                                         :::
-//:::  For enquiries, please contact sales@geodatasource.com                  :::
-//:::                                                                         :::
-//:::  Official Web site: https://www.geodatasource.com                       :::
-//:::                                                                         :::
-//:::               GeoDataSource.com (C) All Rights Reserved 2018            :::
-//:::                                                                         :::
-//:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// This is where it all goes :)
+document.addEventListener("DOMContentLoaded", function () {
+  // Clear inputs and select on page load
+  // clearInputs();
 
-function distance(lat1, lon1, lat2, lon2, unit) {
-    if ((lat1 == lat2) && (lon1 == lon2)) {
-        return 0;
-    } else {
-        var radlat1 = Math.PI * lat1 / 180;
-        var radlat2 = Math.PI * lat2 / 180;
-        var theta = lon1 - lon2;
-        var radtheta = Math.PI * theta / 180;
-        var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
-        if (dist >= 1) {
-            dist = 1;
-        }
-        dist = Math.acos(dist);
-        dist = dist * 180 / Math.PI;
-        dist = dist * 60 * 1.1515;
-        if (unit == "K") {
-            dist = dist * 1.609344
-        }
-        if (unit == "N") {
-            dist = dist * 0.8684
-        }
-        return dist;
-    }
+  // Add event listeners to remove red border on user input
+  document.getElementById("origen").addEventListener("input", function () {
+    removeInvalidClass(this);
+  });
+
+  document.getElementById("destino").addEventListener("input", function () {
+    removeInvalidClass(this);
+  });
+
+  document.getElementById("unit").addEventListener("change", function () {
+    removeInvalidClass(this);
+  });
+});
+
+// Event listener for the "Calcular" button
+document.getElementById("calcular").addEventListener("click", function () {
+  var origen = document.getElementById("origen");
+  var destino = document.getElementById("destino");
+  var unit = document.getElementById("unit");
+
+  // Validate coordinates
+  if (!isValidCoordinates(origen.value.trim())) {
+    handleInvalidInput(origen, "¡Coordenada inválida!");
+  }
+  if (!isValidCoordinates(destino.value.trim())) {
+    handleInvalidInput(destino, "¡Coordenada inválida!");
+  }
+  if (unit.value === "") {
+    handleInvalidInput(unit, "Seleccione una unidad");
+  }
+
+  if (origen.classList.contains("is-invalid") || destino.classList.contains("is-invalid") || unit.classList.contains("is-invalid")) {
+    return; // Stop execution if any input is invalid
+  }
+
+  var latLon1 = origen.value.trim().split(",");
+  var latLon2 = destino.value.trim().split(",");
+  var lat1 = parseFloat(latLon1[0]);
+  var lon1 = parseFloat(latLon1[1]);
+  var lat2 = parseFloat(latLon2[0]);
+  var lon2 = parseFloat(latLon2[1]);
+
+  // Calculate distance in kilometers
+  var distanceInKm = distance(lat1, lon1, lat2, lon2);
+
+  var convertedDistance;
+  var selectedUnit = unit.value; // Get the selected unit from the dropdown
+
+  // Convert distance only if the selected unit is different from kilometers
+  if (selectedUnit === "km") {
+    convertedDistance = distanceInKm; // Use km directly
+  } else {
+    convertedDistance = convertUnits(distanceInKm, selectedUnit); // Convert the distance
+  }
+
+  // Use distance in kilometers to get travel time
+  var travelTime = getTimeFromDistance(distanceInKm); // Use distanceInKm for consistent travel time
+  var hours = Math.floor(travelTime / 60);
+  var minutes = travelTime % 60;
+
+  showResults(origen.value.trim(), destino.value.trim(), convertedDistance.toFixed(2), selectedUnit, hours, minutes);
+});
+
+// Function to handle invalid input
+function handleInvalidInput(inputElement, message) {
+  inputElement.classList.add("is-invalid"); // Add Bootstrap invalid class
+  inputElement.setAttribute("value", message); // Set the placeholder to show the error message
+  inputElement.value = ""; // Clear the input value
 }
 
-$("#calcular").click(function () {
-    var coordenada1 = $("#coordenada1").val();
-    var coordenada2 = $("#coordenada2").val();
-    var coord1 = coordenada1.split(",");
-    var lat1 = coord1[0];
-    var lon1 = coord1[1];
-    var coord2 = coordenada2.split(",");
-    var lat2 = coord2[0];
-    var lon2 = coord2[1];
-    var resultado = Math.fround(distance(lat1, lon1, lat2, lon2, "K")).toFixed(2);
-    $("#zonaresultado").removeClass("d-none") ;
-    $("#resultado").css({
-        "color": "green",
-        "font-weight": "bold"
-    });
-    switch (true) {
-        case (resultado == 0):
-        tiempo = 0;
-        break;
-        case (resultado >= 0 && resultado < 1):
-        tiempo = 0;
-        break;
-        case (resultado >= 1 && resultado < 2):
-        tiempo = 1;
-        break;
-        case (resultado >= 2 && resultado < 3):
-        tiempo = 2;
-        break;
-        case (resultado >= 3 && resultado < 5):
-        tiempo = 3;
-        break;
-        case (resultado >= 5 && resultado < 8):
-        tiempo = 4;
-        break;
-        case (resultado >= 8 && resultado < 10):
-        tiempo = 5;
-        break;
-        case (resultado >= 10 && resultado < 15):
-        tiempo = 7;
-        break;
-        case (resultado >= 10 && resultado < 11):
-        tiempo = 9;
-        break;
-        case (resultado >= 15 && resultado < 20):
-        tiempo = 12;
-        break;
-        case (resultado >= 20 && resultado < 25):
-        tiempo = 15;
-        break;
-        case (resultado >= 25 && resultado < 35):
-        tiempo = 17;
-        break;
-        case (resultado >= 35 && resultado < 40):
-        tiempo = 18;
-        break;
-        case (resultado >= 40 && resultado < 45):
-        tiempo = 19;
-        break;
-        case (resultado >= 45 && resultado < 50):
-        tiempo = 19;
-        break;
-        case (resultado >= 50 && resultado < 60):
-        tiempo = 20;
-        break;
-        case (resultado >= 60 && resultado < 70):
-        tiempo = 21;
-        break;
-        case (resultado >= 70 && resultado < 80):
-        tiempo = 23;
-        break;
-        case (resultado >= 80 && resultado < 90):
-        tiempo = 24;
-        break;
-        case (resultado >= 90 && resultado < 100):
-        tiempo = 25;
-        break;
-        case (resultado >= 100 && resultado < 125):
-        tiempo = 26;
-        break;
-        case (resultado >= 125 && resultado < 150):
-        tiempo = 29;
-        break;
-        case (resultado >= 150 && resultado < 175):
-        tiempo = 32;
-        break;
-        case (resultado >= 175 && resultado < 201):
-        tiempo = 34;
-        break;
-        case (resultado >= 201 && resultado < 250):
-        tiempo = 37;
-        break;
-        case (resultado >= 250 && resultado < 300):
-        tiempo = 41;
-        break;
-        case (resultado >= 300 && resultado < 328):
-        tiempo = 46;
-        break;
-        case (resultado >= 328 && resultado < 350):
-        tiempo = 48;
-        break;
-        case (resultado >= 350 && resultado < 400):
-        tiempo = 50;
-        break;
-        case (resultado >= 400 && resultado < 450):
-        tiempo = 54;
-        break;
-        case (resultado >= 450 && resultado < 500):
-        tiempo = 58;
-        break;
-        case (resultado >= 500 && resultado < 550):
-        tiempo = 62;
-        break;
-        case (resultado >= 550 && resultado < 600):
-        tiempo = 66;
-        break;
-        case (resultado >= 600 && resultado < 650):
-        tiempo = 70;
-        break;
-        case (resultado >= 650 && resultado < 700):
-        tiempo = 74;
-        break;
-        case (resultado >= 700 && resultado < 751):
-        tiempo = 77;
-        break;
-        case (resultado >= 751 && resultado < 802):
-        tiempo = 82;
-        break;
-        case (resultado >= 802 && resultado < 839):
-        tiempo = 84;
-        break;
-        case (resultado >= 839 && resultado < 897):
-        tiempo = 88;
-        break;
-        case (resultado >= 897 && resultado < 900):
-        tiempo = 90;
-        break;
-        case (resultado >= 900 && resultado < 948):
-        tiempo = 91;
-        break;
-        case (resultado >= 948 && resultado < 1007):
-        tiempo = 95;
-        break;
-        case (resultado >= 1007 && resultado < 1020):
-        tiempo = 98;
-        break;
-        case (resultado >= 1020 && resultado < 1100):
-        tiempo = 102;
-        break;
-        case (resultado >= 1100 && resultado < 1180):
-        tiempo = 104;
-        break;
-        case (resultado >= 1180 && resultado < 1200):
-        tiempo = 109;
-        break;
-        case (resultado >= 1200 && resultado < 1221):
-        tiempo = 111;
-        break;
-        case (resultado >= 1221 && resultado < 1300):
-        tiempo = 113;
-        break;
-        case (resultado >= 1300 && resultado < 1344):
-        tiempo = 117;
-        break;
-        case (resultado >= 1344 && resultado < 1345):
-        tiempo = 119;
-        break;
-        case (resultado >= 1345):
-        tiempo = 120;
-        break;
-        default:
-        $('#resultado').html('Coordenadas incorrectas!');
+// Function to remove the red border when the user enters a value
+function removeInvalidClass(inputElement) {
+  if (inputElement.value.trim() !== "") {
+    inputElement.classList.remove("is-invalid");
+  }
+}
+
+// Event listeners to remove red border on input
+document.querySelectorAll("input, select").forEach(function (element) {
+  element.addEventListener("input", function () {
+    removeInvalidClass(element);
+  });
+});
+
+// Function to clear all input fields
+document.getElementById("borrar").addEventListener("click", function () {
+  document.querySelectorAll("input, select").forEach(function (element) {
+    element.value = ""; // Clear the value
+    removeInvalidClass(element); // Remove any red border
+    window.location.reload();
+  });
+  document.getElementById("zonaresultado").classList.add("d-none"); // Hide the result area
+});
+
+// Clear inputs and reset validation
+function clearInputs() {
+  // Clear all inputs
+  document.getElementById("origen").value = "";
+  document.getElementById("destino").value = "";
+
+  // Reset select
+  document.getElementById("unit").selectedIndex = 0;
+
+  // Remove any previous invalid classes
+  document.getElementById("origen").classList.remove("is-invalid");
+  document.getElementById("destino").classList.remove("is-invalid");
+  document.getElementById("unit").classList.remove("is-invalid");
+
+  // Reset placeholders
+  document.getElementById("origen").placeholder = "";
+  document.getElementById("destino").placeholder = "";
+}
+
+// Calculate distance between two points
+function distance(lat1, lon1, lat2, lon2) {
+  if (lat1 === lat2 && lon1 === lon2) {
+    return 0;
+  } else {
+    var radlat1 = (Math.PI * lat1) / 180;
+    var radlat2 = (Math.PI * lat2) / 180;
+    var theta = lon1 - lon2;
+    var radtheta = (Math.PI * theta) / 180;
+    var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+    if (dist > 1) {
+      dist = 1;
     }
+    dist = Math.acos(dist);
+    dist = (dist * 180) / Math.PI;
+    dist = dist * 60 * 1.1515; // distance in miles
 
-    var horas;
-    var minutos;
-    horas = Math.floor((tiempo % (60 * 24)) / (60));
-    minutos = Math.floor((tiempo % (60)) / 1);
-    $('#resultado').html("La distancia entre: <span style='color:red'>"+coordenada1+"</span> y <span style='color:red'>"+coordenada2+"</span> es de <span style='color:red'>"+resultado+" KM</span><br>"+
-        "el tiempo estimado de cd es: <span style='color:red'>"+("0" + horas).slice(-2) + " horas y " + ("0" + minutos).slice(-2) + " minutos</span>");
-}).click(function () {
-    window.location.href = "#zonaresultado";
-});
+    // Convert distance to kilometers
+    dist = dist * 1.609344;
 
-$("#borrar").click(function () {
-   $("#coordenada1").val("");
-   $("#coordenada2").val("");
-   location.reload();
-   location.href=".";
-});
+    return dist;
+  }
+}
+
+// Convert distance to selected unit
+function convertUnits(distance, unit) {
+  switch (unit) {
+    case "km":
+      return distance; // return distance in km
+    case "mi":
+      return distance * 0.621371; // convert km to miles
+    case "m":
+      return distance * 1000; // convert km to meters
+    default:
+      return distance; // fallback to km if no valid unit is selected
+  }
+}
+
+// Validate coordinate format and range
+function isValidCoordinates(coordinate) {
+  const regex = /^-?\d+(\.\d+)?\s*,\s*-?\d+(\.\d+)?$/; // Regex to check for valid coordinate format
+  const coords = coordinate.split(",").map((coord) => parseFloat(coord.trim()));
+  const [lat, lon] = coords;
+
+  // Check for regex match and range
+  return regex.test(coordinate) && isValidCoordinate(lat, lon);
+}
+
+// Check if latitude and longitude are in valid range
+function isValidCoordinate(lat, lon) {
+  return lat >= -90 && lat <= 90 && lon >= -180 && lon <= 180;
+}
+
+// Show results in modal
+function showResults(origen, destino, distance, unit, hours, minutes) {
+  // Map unit value to full names
+  const unitNames = {
+    km: "Kilómetros",
+    mi: "Millas",
+    m: "Metros",
+  };
+
+  // Get the full name for the selected unit
+  const unitName = unitNames[unit] || "Kilómetros"; // Default to "Kilómetros" if unit is not recognized
+
+  document.getElementById("resultado").innerHTML = `
+        La distancia entre: <span class="info"'>${origen}</span> y 
+        <span class="info"'>${destino}</span> es de 
+        <span class="info"'>${distance} ${unitName}</span><br>
+        El tiempo estimado es: <span class="info"'>${("0" + hours).slice(-2)} horas y ${("0" + minutes).slice(-2)} minutos</span>
+    `;
+  $("#outputModal").modal("show");
+}
+
+// Function to get estimated time from distance (always in kilometers)
+function getTimeFromDistance(distance) {
+  for (const range of distanceTimeMapping) {
+    if (distance <= range.maxDistance) {
+      return range.time;
+    }
+  }
+  return null; // default case (if needed)
+}
+
+// Mapping array in kilometers and corresponding times in minutes
+const distanceTimeMapping = [
+  { maxDistance: 0, time: 0 },
+  { maxDistance: 1, time: 0 },
+  { maxDistance: 2, time: 1 },
+  { maxDistance: 3, time: 2 },
+  { maxDistance: 5, time: 3 },
+  { maxDistance: 8, time: 4 },
+  { maxDistance: 10, time: 5 },
+  { maxDistance: 15, time: 7 },
+  { maxDistance: 20, time: 12 },
+  { maxDistance: 25, time: 15 },
+  { maxDistance: 35, time: 17 },
+  { maxDistance: 40, time: 18 },
+  { maxDistance: 45, time: 19 },
+  { maxDistance: 50, time: 20 },
+  { maxDistance: 60, time: 21 },
+  { maxDistance: 70, time: 23 },
+  { maxDistance: 80, time: 24 },
+  { maxDistance: 90, time: 25 },
+  { maxDistance: 100, time: 26 },
+  { maxDistance: 125, time: 29 },
+  { maxDistance: 150, time: 32 },
+  { maxDistance: 175, time: 34 },
+  { maxDistance: 201, time: 37 },
+  { maxDistance: 250, time: 41 },
+  { maxDistance: 300, time: 46 },
+  { maxDistance: 328, time: 48 },
+  { maxDistance: 350, time: 50 },
+  { maxDistance: 400, time: 54 },
+  { maxDistance: 450, time: 58 },
+  { maxDistance: 500, time: 62 },
+  { maxDistance: 550, time: 66 },
+  { maxDistance: 600, time: 70 },
+  { maxDistance: 650, time: 74 },
+  { maxDistance: 700, time: 77 },
+  { maxDistance: 751, time: 82 },
+  { maxDistance: 802, time: 84 },
+  { maxDistance: 839, time: 88 },
+  { maxDistance: 897, time: 90 },
+  { maxDistance: 900, time: 91 },
+  { maxDistance: 948, time: 95 },
+  { maxDistance: 1007, time: 98 },
+  { maxDistance: 1020, time: 102 },
+  { maxDistance: 1100, time: 104 },
+  { maxDistance: 1180, time: 109 },
+  { maxDistance: 1200, time: 111 },
+  { maxDistance: 1221, time: 113 },
+  { maxDistance: 1300, time: 117 },
+  { maxDistance: 1344, time: 119 },
+  { maxDistance: Infinity, time: 120 },
+];

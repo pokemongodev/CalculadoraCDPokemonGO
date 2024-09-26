@@ -2,121 +2,109 @@
 <html lang="es">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Calculadora de Cooldown Pokémon GO</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="manifest" href="../site.webmanifest">
-    <link rel="apple-touch-icon" href="../icon.png">
-    <link rel="shortcut icon" href="../favicon.ico">
-    <!-- Place favicon.ico in the root directory -->
-    <!-- Bootstrap core CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Material Design Bootstrap -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.0/css/mdb.min.css" rel="stylesheet">
-    <link href="./css/style.css" rel="stylesheet">
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.3.2/mdb.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" class="rel">
+  <title>Calculadora CD Pokémon GO</title>
 </head>
 
 <body>
-    <!--[if lte IE 9]>
-<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
-<![endif]-->
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark primary-color">
-        <a class="navbar-brand" href="#">Calculadora CD PokemonGO</a>
-    </nav>
-    <!-- Page Content -->
-    <div class="container mt-2">
-        <div class="row border">
-            <div class="col-md-12">
-                <h2 class="text-center">Calculadora CD Pokémon GO</h2>
-            </div>
-            <div class="col-md-12">
-                <h3>Instrucciones de uso:</h3>
-                <ul>
-                    <li>
-                        Introduce cada coordenada en su correspondiente cuadro de texto
-                        <ul>
-                            <li>
-                                Las coordenadas deben estar en formato decimal, es decir, no pude haber ninguna letra o símbolo . Sólo números.
-                            </li>
-                            <li>
-                                Cada coordenada debe estar compuesta de dos bloques separados por una coma
-                            </li>
-                            <li>
-                                Ejemplo de coordenada válida:
-                                <span style="color:green;"> 25.03181317, 121.50980</span>
-                            </li>
-                            <li>Ejemplo de coordenada NO válida:
-                                <span style="color:red;">36°16'55.6"N 115°17'45.2"W</span>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        Una vez hayas introducido las 2 coordenadas en sus correspondientes huecos,pulsa calcular distancia
-                    </li>
-                </ul>
-            </div>
+  <div class="container">
+    <div class="row border border-2 m-2">
+      <div class="col-md-12">
+        <h1 class="text-center">Calculadora CD Pokémon GO</h1>
+      </div>
+      <div class="col-md-12 mt-2">
+        <h3 class="text-center">Instrucciones de uso:</h3>
+        <ul>
+          <li>
+            Introduce cada coordenada en su correspondiente cuadro de texto.
+          </li>
+          <li>
+            Las coordenadas deben estar en formato decimal, es decir, no puede
+            haber ninguna letra o símbolo. Sólo números.
+          </li>
+          <li>
+            Cada coordenada debe estar compuesta de dos bloques separados por
+            una coma.
+          </li>
+          <li>
+            <ul>
+              <li>
+                Ejemplo de coordenada válida:
+                <span class="valid">25.03181317, 121.50980</span>
+              </li>
+              <li>
+                Ejemplo de coordenada NO válida:
+                <span class="error">36°16'55.6"N 115°17'45.2"W</span>
+            </ul>
+          </li>
+          <li>Una vez hayas introducido las 2 coordenadas en sus correspondientes huecos,pulsa calcular distancia</li>
+        </ul>
+      </div>
+      <div class="col-md-12 mt-3">
+        <div data-mdb-input-init class="form-outline mb-2">
+          <input type="text" class="form-control" aria-describedby="origen" id="origen">
+          <label class="form-label" for="origen">Origen</label>
         </div>
-        <div class="row border mt-4">
-            <div class="col-md-12 mt-3">
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="coordenada-1">Coordenada 1</span>
-                    </div>
-                    <input type="text" class="form-control" aria-describedby="coordenada-1" name="coordenada1" id="coordenada1">
-                </div>
-            </div>
-            <div class="col-md-12">
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="coordenada-2">
-                            Coordenada 2
-                        </span>
-                    </div>
-                    <input type="text" class="form-control" aria-describedby="coordenada-2" name="coordenada2" id="coordenada2">
-                </div>
-            </div>
+        <div data-mdb-input-init class="form-outline mb-2">
+          <input type="text" class="form-control" aria-describedby="destino" id="destino">
+          <label class="form-label" for="destino">Destino</label>
         </div>
-        <div class="row mt-4 border">
-            <div class="col-md-12 mt-2">
-                <button id="calcular" class="btn btn-lg btn-block btn-success">
-                    Calcular Distancia
-                </button>
-                <button id="borrar" class="btn btn-lg btn-block btn-danger mb-4">
-                    Borrar datos
-                </button>
-            </div>
+      </div>
+      <div class="col-md-12">
+        <div class="form-group">
+          <select class="form-select" aria-label="unit" id="unit">
+            <option disabled selected value="">
+              Selecciona una unidad de medida
+            </option>
+            <option value="km">Kilómetros</option>
+            <option value="mi">Millas</option>
+            <option value="m">Metros</option>
+          </select>
         </div>
-        <div class="row mt-4 border d-none text-center lead" id="zonaresultado">
-            <div class="col-md-12 mt-2">
-                <p id="resultado"></p>
+      </div>
+      <div class="col-12 mt-2">
+        <button id="calcular" class="btn btn-lg btn-success w-100 waves-effect waves-light">
+          Calcular Distancia
+        </button>
+      </div>
+      <div class="col-12 my-2">
+        <button id="borrar" class="btn btn-lg btn-danger w-100 waves-effect waves-light">
+          Borrar datos
+        </button>
+      </div>
+      <!-- Output Modal -->
+      <div class="modal fade" id="outputModal" tabindex="-1" role="dialog" aria-labelledby="outputModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="outputModalLabel">Resultados</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+            <div class="modal-body">
+              <p id="resultado"></p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                Cerrar
+              </button>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
-    <!-- Bootstrap core JavaScript -->
-    <!-- JQuery -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-    <!-- Bootstrap tooltips -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
-    <!-- Bootstrap core JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <!-- MDB core JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.0/js/mdb.min.js"></script>
-    <script src="./js/script.js"></script>
-    <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
-    <script>
-        window.ga = function() {
-            ga.q.push(arguments)
-        };
-        ga.q = [];
-        ga.l = +new Date;
-        ga('create', 'UA-162894683-1', 'auto');
-        ga('send', 'pageview')
-
-    </script>
-    <script src="https://www.google-analytics.com/analytics.js" async defer></script>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.3.2/mdb.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+  <script src="js/script.js"></script>
 </body>
 
 </html>

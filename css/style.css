@@ -1,0 +1,19 @@
+.is-invalid {
+  box-shadow: 0 0 5px red; /* Red box shadow for invalid input */
+  margin: 0 !important;
+}
+
+.error {
+  font-weight: bold;
+  color: red;
+}
+
+.valid {
+  color: green;
+  font-weight: bold;
+}
+
+.info {
+  font-weight: bold;
+  color: blue;
+}
