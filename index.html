@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" integrity="sha256-zzPh8NflvEInFbVSzLYGVMLOn0j0kfsjq/UlNeMBRYw=" crossorigin="anonymous" />
+    <!-- mdb -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdb-ui-kit@9.0.0/css/mdb.min.css" integrity="sha256-Ml/q6yXj+T4B5zTYrkhE1V/YydaOkPc1c1bYvo65vDo=" crossorigin="anonymous" />
+    <!-- custom css -->
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <title>Calculadora CD Pokémon GO</title>
+  </head>
+  <body>
+    <div class="container py-2 my-2">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="text-center">Calculadora CD Pokémon GO</h1>
+        </div>
+        <div class="col-md-12">
+          <h3 class="text-center">Instrucciones de uso:</h3>
+          <ul>
+            <li>Introduce cada coordenada en su correspondiente cuadro de texto.</li>
+            <li>Las coordenadas deben estar en formato decimal, es decir, no puede haber ninguna letra o símbolo. Sólo números.</li>
+            <li>Cada coordenada debe estar compuesta de dos bloques separados por una coma.</li>
+            <li>
+              Ejemplo de coordenada válida:
+              <ul>
+                <li><span class="valid">25.03181317, 121.50980</span></li>
+              </ul>
+            </li>
+            <li>
+              Ejemplo de coordenada NO válida:
+              <ul>
+                <li><span class="error">36°16'55.6"N 115°17'45.2"W</span></li>
+              </ul>
+            </li>
+            <li>Una vez hayas introducido las 2 coordenadas en sus correspondientes huecos,pulsa calcular distancia</li>
+          </ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 mb-3">
+          <div data-mdb-input-init="" class="form-outline">
+            <input type="text" class="form-control" aria-describedby="origen" id="origen" aria-label="Origen" placeholder="Origen" />
+            <label class="form-label" for="origen">Origen</label>
+          </div>
+        </div>
+        <div class="col-12 mb-3">
+          <div class="form-outline" data-mdb-input-init="">
+            <input type="text" class="form-control" aria-describedby="destino" id="destino" aria-label="Destino" placeholder="Destino" />
+            <label class="form-label" for="destino">Destino</label>
+          </div>
+        </div>
+        <div class="col-12 mb-3">
+          <div class="form-group">
+            <select class="form-select" aria-label="unit" id="unit">
+              <option disabled selected value="">Selecciona una unidad de medida</option>
+              <option value="km">Kilómetros</option>
+              <option value="mi">Millas</option>
+              <option value="m">Metros</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-12 mb-3">
+          <button id="calcular" class="btn btn-lg w-100 waves-effect waves-light">Calcular Distancia</button>
+        </div>
+        <div class="col-12">
+          <button id="borrar" class="btn btn-lg w-100 waves-effect waves-light">Borrar datos</button>
+        </div>
+      </div>
+    </div>
+    <!-- Output Modal -->
+    <div class="modal show" id="outputModal" tabindex="-1" role="dialog" aria-labelledby="outputModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="outputModalLabel">Resultados</h5>
+          </div>
+          <div class="modal-body">
+            <p id="resultado"></p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3/dist/js/bootstrap.bundle.min.js" integrity="sha256-ORBCb//WwUWwNh+EjsvO97snO3mAJ1+jhMzrlPBTYSQ=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mdb-ui-kit@9.0.0/js/mdb.umd.min.js" integrity="sha256-NfT8bpHJAyGna7no5stY5LfG2wP9Ad+eejdQ1FZMG2c=" crossorigin="anonymous"></script>
+    <script type="module" src="assets/js/main.js"></script>
+  </body>
+</html>
