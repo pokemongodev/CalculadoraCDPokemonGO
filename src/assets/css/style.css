@@ -1,0 +1,82 @@
+:root {
+  --bs-primary: #0d6efd;
+  --bs-secondary: #6c757d;
+  --bs-success: #198754;
+  --bs-warning: #ffc107;
+  --bs-danger: #dc3545;
+  --bs-light: #f8f9fa;
+  --bs-dark: #212529;
+  --bs-transparent: transparent;
+}
+
+.is-invalid,
+#borrar,
+#calcular,
+#unit {
+  margin: 0 !important;
+}
+
+.error {
+  color: var(--bs-danger);
+  font-weight: bold;
+}
+
+.is-invalid {
+  box-shadow: 0 0 5px var(--bs-danger);
+}
+
+.info {
+  font-weight: bold;
+}
+
+.valid {
+  color: var(--bs-success);
+  font-weight: bold;
+}
+
+@media (prefers-color-scheme: light) {
+  body,
+  input,
+  select {
+    background-color: var(--bs-light) !important;
+    color: var(--bs-dark) !important;
+  }
+
+  .info {
+    color: var(--bs-primary);
+  }
+
+  .modal-header {
+    border-bottom: 2px solid var(--bs-dark) !important;
+  }
+
+  .modal-footer {
+    border-top: 2px solid var(--bs-dark) !important;
+  }
+
+  .modal-content,
+  .modal-footer,
+  .modal-header {
+    background-color: var(--bs-light);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  body,
+  input,
+  select {
+    background-color: var(--bs-dark) !important;
+    color: var(--bs-light) !important;
+  }
+
+  .info {
+    color: var(--bs-warning);
+  }
+
+  .modal-content,
+  .modal-footer,
+  .modal-header {
+    background-color: var(--bs-dark) !important;
+    color: var(--bs-light) !important;
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "src/assets/**/*.css": [
+    "stylelint --fix"
+  ],
+  "src/assets/**/*.js": [
+    "eslint --fix"
+  ]
+}

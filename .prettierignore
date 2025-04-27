@@ -1,0 +1,10 @@
+node_modules
+package-lock.json
+package.json
+.git
+.gitignore
+.prettierignore
+src/index.html
+**/*.json
+'.husky/**/*',
+'.husky/pre-commit',

@@ -5,3 +5,4 @@
 build/
 .vercel
 node_modules/
+all.js

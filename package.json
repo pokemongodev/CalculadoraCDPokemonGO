@@ -1,0 +1,41 @@
+{
+  "name": "calculadoracdpokemongo",
+  "version": "1.0.0",
+  "description": "## Instrucciones de uso",
+  "main": "assets/js/main.js",
+  "type": "module",
+  "scripts": {
+    "lint:js": "eslint '**/*.js' '**/*.mjs'  --fix",
+    "lint:css": "stylelint '**/*.css' --fix",
+    "pretty": "prettier --write '.'",
+    "lint": "npm-run-all2 pretty lint:js lint:css",
+    "prepare": "husky"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pokemongodev/CalculadoraCDPokemonGO.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pokemongodev/CalculadoraCDPokemonGO/issues"
+  },
+  "homepage": "https://github.com/pokemongodev/CalculadoraCDPokemonGO#readme",
+  "dependencies": {
+    "@sequencemedia/eslint-config-standard": "^0.2.50",
+    "eslint": "^9.25.1",
+    "eslint-plugin-prettier": "^5.2.6",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.5.1",
+    "npm-run-all2": "^7.0.2",
+    "stylelint": "^16.19.1",
+    "stylelint-config-clean-order": "^7.0.0",
+    "stylelint-config-standard": "^38.0.0",
+    "stylelint-group-selectors": "^1.0.10",
+    "stylelint-no-indistinguishable-colors": "^2.3.1",
+    "stylelint-order": "^7.0.0",
+    "stylelint-rem-over-px": "^1.0.2",
+    "stylelint-use-nesting": "^6.0.0",
+    "stylelint-value-no-unknown-custom-properties": "^6.0.1"
+  }
+}
