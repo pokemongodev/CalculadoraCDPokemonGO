@@ -52,6 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   document.getElementById('borrar').addEventListener('click', function () {
     clearInputs();
+    document.getElementById('zonaresultado').classList.add('d-none');
     $('#outputModal').modal('hide');
   });
 });

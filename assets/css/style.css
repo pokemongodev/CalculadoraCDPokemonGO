@@ -24,13 +24,9 @@
     box-shadow: 0 0 5px var(--bs-danger);
   }
 
-  .container {
-    border: 3px solid var(--bs-dark);
-  }
-
   #calcular {
     background-color: var(--bs-success) !important;
-    color: var(--bs-success);
+    color: var(--bs-light);
   }
 
   #borrar {
@@ -64,12 +60,9 @@
     box-shadow: 0 0 10px var(--bs-danger);
   }
 
-  .container {
-    border: 3px solid var(--bs-light);
-  }
-
   .form-label,
-  .form-control {
+  .form-control,
+  input {
     color: var(--bs-light) !important;
   }
 

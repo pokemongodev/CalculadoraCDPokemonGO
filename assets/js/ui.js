@@ -5,7 +5,6 @@ export function showResults(origen, destino, distance, unit, hours, minutes) {
     mi: 'Millas',
     m: 'Metros'
   };
-
   const unitName = unitNames[unit] || 'Kilómetros';
 
   document.getElementById('resultado').innerHTML = `
