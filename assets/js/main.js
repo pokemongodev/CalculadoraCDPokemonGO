@@ -4,13 +4,7 @@ import { distance, convertUnits, getTimeFromDistance } from './distance.js';
 import { showResults, clearInputs } from './ui.js';
 
 $(document).ready(function () {
-  clearInputs();
-
-  $('#origen').on('input', function () {
-    removeInvalidClass(this);
-  });
-
-  $('#destino').on('input', function () {
+  $('#origen, #destino').on('input', function () {
     removeInvalidClass(this);
   });
 
@@ -52,7 +46,5 @@ $(document).ready(function () {
 
   $('#borrar').on('click', function () {
     clearInputs();
-    $('#zonaresultado').addClass('d-none');
-    $('#outputModal').modal('hide');
   });
 });

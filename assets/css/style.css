@@ -1,65 +1,67 @@
 :root {
-  --bs-primary: #0d6efd; /* Bootstrap Primary Color */
-  --bs-secondary: #6c757d; /* Bootstrap Secondary Color */
-  --bs-success: #198754; /* Bootstrap Success Color */
-  --bs-info: #0dcaf0; /* Bootstrap Info Color */
-  --bs-warning: #ffc107; /* Bootstrap Warning Color */
-  --bs-danger: #dc3545; /* Bootstrap Danger Color */
-  --bs-light: #f8f9fa; /* Bootstrap Light Color */
-  --bs-dark: #212529; /* Bootstrap Dark Color */
-  --bs-transparent: transparent; /* Bootstrap Transparent Color */
+  --bs-primary: #0d6efd;
+  --bs-secondary: #6c757d;
+  --bs-success: #198754;
+  --bs-info: #0dcaf0;
+  --bs-warning: #ffc107;
+  --bs-danger: #dc3545;
+  --bs-light: #f8f9fa;
+  --bs-dark: #212529;
+  --bs-transparent: transparent;
 }
 
+#calcular,
+#unit,
+#borrar,
 .is-invalid {
   margin: 0 !important;
 }
 
-#calcular,
-#borrar {
-  margin: 0;
+.is-invalid {
+  box-shadow: 0 0 5px var(--bs-danger);
+}
+
+.error {
+  color: var(--bs-danger);
+  font-weight: bold;
+}
+
+.valid {
+  color: var(--bs-success);
+  font-weight: bold;
 }
 
 @media (prefers-color-scheme: light) {
-  body {
-    background-color: var(--bs-light);
-    color: var(--bs-dark);
+  body,
+  select,
+  input {
+    background-color: var(--bs-light) !important;
+    color: var(--bs-dark) !important;
   }
 
-  .is-invalid {
-    box-shadow: 0 0 5px var(--bs-danger);
-  }
-
-  .error {
-    color: var(--bs-danger);
-    font-weight: bold;
-  }
-
-  .valid {
-    color: var(--bs-success);
-    font-weight: bold;
-  }
-
-  .modal-content {
-    background-color: var(--bs-light);
-  }
-
+  .modal-content,
+  .modal-footer,
   .modal-header {
-    background-color: var(--bs-light);
-  }
-
-  .modal-footer {
     background-color: var(--bs-light);
   }
 
   .info {
     color: var(--bs-dark);
-    font-weight: bold;
   }
 }
 
 @media (prefers-color-scheme: dark) {
-  body {
-    background-color: var(--bs-dark);
-    color: var(--bs-light);
+  body,
+  select,
+  input {
+    background-color: var(--bs-dark) !important;
+    color: var(--bs-light) !important;
+  }
+
+  .modal-content,
+  .modal-footer,
+  .modal-header {
+    background-color: var(--bs-dark) !important;
+    color: var(--bs-light) !important;
   }
 }
