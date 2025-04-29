@@ -1,13 +1,15 @@
 // File: js/validation.js
-export function handleInvalidInput(inputElement, message) {
-  inputElement.classList.add('is-invalid');
-  inputElement.setAttribute('value', message);
-  inputElement.value = '';
+export function handleInvalidInput($inputElement, message) {
+  const $element = $($inputElement);
+  $element.addClass('is-invalid').val('').attr('placeholder', message);
+  $(`label[for='${$element.attr('id')}']`).text(message);
 }
 
 export function removeInvalidClass(inputElement) {
-  if (inputElement.value.trim() !== '') {
-    inputElement.classList.remove('is-invalid');
+  if ($(inputElement).val().trim() !== '') {
+    $(inputElement).removeClass('is-invalid');
+    const defaultLabel = $(inputElement).attr('id') === 'origen' ? 'Origen' : 'Destino';
+    $(`label[for='${$(inputElement).attr('id')}']`).text(defaultLabel);
   }
 }
 

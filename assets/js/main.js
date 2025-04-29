@@ -3,25 +3,25 @@ import { handleInvalidInput, removeInvalidClass, isValidCoordinates } from './va
 import { distance, convertUnits, getTimeFromDistance } from './distance.js';
 import { showResults, clearInputs } from './ui.js';
 
-document.addEventListener('DOMContentLoaded', function () {
+$(document).ready(function () {
   clearInputs();
 
-  document.getElementById('origen').addEventListener('input', function () {
+  $('#origen').on('input', function () {
     removeInvalidClass(this);
   });
 
-  document.getElementById('destino').addEventListener('input', function () {
+  $('#destino').on('input', function () {
     removeInvalidClass(this);
   });
 
-  document.getElementById('unit').addEventListener('change', function () {
+  $('#unit').on('change', function () {
     removeInvalidClass(this);
   });
 
-  document.getElementById('calcular').addEventListener('click', function () {
-    const origen = document.getElementById('origen');
-    const destino = document.getElementById('destino');
-    const unit = document.getElementById('unit');
+  $('#calcular').on('click', function () {
+    const origen = $('#origen')[0];
+    const destino = $('#destino')[0];
+    const unit = $('#unit')[0];
 
     if (!isValidCoordinates(origen.value.trim())) {
       handleInvalidInput(origen, '¡Coordenada inválida!');
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
       handleInvalidInput(unit, 'Seleccione una unidad');
     }
 
-    if (origen.classList.contains('is-invalid') || destino.classList.contains('is-invalid') || unit.classList.contains('is-invalid')) {
+    if ($(origen).hasClass('is-invalid') || $(destino).hasClass('is-invalid') || $(unit).hasClass('is-invalid')) {
       return;
     }
 
@@ -50,9 +50,9 @@ document.addEventListener('DOMContentLoaded', function () {
     showResults(origen.value.trim(), destino.value.trim(), convertedDistance.toFixed(2), unit.value, hours, minutes);
   });
 
-  document.getElementById('borrar').addEventListener('click', function () {
+  $('#borrar').on('click', function () {
     clearInputs();
-    document.getElementById('zonaresultado').classList.add('d-none');
+    $('#zonaresultado').addClass('d-none');
     $('#outputModal').modal('hide');
   });
 });

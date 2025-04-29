@@ -20,18 +20,13 @@
 }
 
 @media (prefers-color-scheme: light) {
+  body {
+    background-color: var(--bs-light);
+    color: var(--bs-dark);
+  }
+
   .is-invalid {
     box-shadow: 0 0 5px var(--bs-danger);
-  }
-
-  #calcular {
-    background-color: var(--bs-success) !important;
-    color: var(--bs-light);
-  }
-
-  #borrar {
-    background-color: var(--bs-danger) !important;
-    color: var(--bs-light);
   }
 
   .error {
@@ -44,8 +39,20 @@
     font-weight: bold;
   }
 
+  .modal-content {
+    background-color: var(--bs-light);
+  }
+
+  .modal-header {
+    background-color: var(--bs-light);
+  }
+
+  .modal-footer {
+    background-color: var(--bs-light);
+  }
+
   .info {
-    color: var(--bs-light);
+    color: var(--bs-dark);
     font-weight: bold;
   }
 }
@@ -54,64 +61,5 @@
   body {
     background-color: var(--bs-dark);
     color: var(--bs-light);
-  }
-
-  .is-invalid {
-    box-shadow: 0 0 10px var(--bs-danger);
-  }
-
-  .form-label,
-  .form-control,
-  input {
-    color: var(--bs-light) !important;
-  }
-
-  select {
-    background-color: var(--bs-dark) !important;
-    color: var(--bs-light) !important;
-  }
-
-  #calcular {
-    background-color: var(--bs-light) !important;
-    color: var(--bs-dark);
-    font-weight: bold;
-  }
-
-  #borrar {
-    background-color: var(--bs-warning) !important;
-    color: var(--bs-dark);
-    font-weight: bold;
-  }
-
-  .error {
-    color: var(--bs-danger);
-    font-weight: bold;
-  }
-
-  .valid {
-    color: var(--bs-success);
-    font-weight: bold;
-  }
-
-  .info {
-    color: var(--bs-light);
-    font-weight: bold;
-  }
-
-  .modal-content {
-    background-color: var(--bs-dark);
-    color: var(--bs-light);
-  }
-
-  .modal-header {
-    background-color: var(--bs-dark);
-  }
-
-  .modal-footer {
-    background-color: var(--bs-dark);
-  }
-
-  .btn-close {
-    filter: invert(1);
   }
 }
