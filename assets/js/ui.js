@@ -1,4 +1,3 @@
-// File: js/ui.js
 export function showResults(origen, destino, distance, unit, hours, minutes) {
   const unitNames = {
     km: 'Kilómetros',
@@ -19,10 +18,20 @@ export function showResults(origen, destino, distance, unit, hours, minutes) {
 export function clearInputs() {
   $('#origen, #destino')
     .val('')
+    .removeClass('is-invalid active')
+    .attr('placeholder', 'Introduce coordenadas')
+    .attr('aria-label', function () {
+      return $(this).attr('id') === 'origen' ? 'Origen' : 'Destino';
+    });
+
+  const $unitSelect = $('#unit');
+  $unitSelect
     .removeClass('is-invalid')
-    .attr('placeholder', '')
-    .attr('aria-label', '');
-  $('#unit').prop('selectedIndex', 0).removeClass('is-invalid');
+    .find('option[value=""]')
+    .text('Selecciona una unidad de medida');
+  $unitSelect.prop('selectedIndex', -1).val('');
+
   $("label[for='origen']").text('Origen');
   $("label[for='destino']").text('Destino');
+  $("label[for='unit']").text('Unidad');
 }

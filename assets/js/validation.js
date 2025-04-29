@@ -1,16 +1,41 @@
-// File: js/validation.js
 export function handleInvalidInput($inputElement, message) {
   const $element = $($inputElement);
-  $element.addClass('is-invalid').val('').attr('placeholder', message);
-  $(`label[for='${$element.attr('id')}']`).text(message);
+  $element.addClass('is-invalid');
+
+  const id = $element.attr('id');
+  const $label = $(`label[for='${id}']`);
+
+  if ($element.is('select')) {
+    // Forzar deselección para que el mensaje se actualice correctamente
+    $element.prop('selectedIndex', -1);
+    $element.find('option[value=""]').text(message);
+    $element.val('');
+  } else {
+    $element.val('').attr('placeholder', message).removeClass('active');
+  }
+
+  if ($label.length) {
+    $label.text(message);
+  }
 }
 
 export function removeInvalidClass(inputElement) {
-  if ($(inputElement).val().trim() !== '') {
-    $(inputElement).removeClass('is-invalid');
-    const defaultLabel =
-      $(inputElement).attr('id') === 'origen' ? 'Origen' : 'Destino';
-    $(`label[for='${$(inputElement).attr('id')}']`).text(defaultLabel);
+  const $element = $(inputElement);
+
+  if ($element.is('select')) {
+    if ($element.val() !== '') {
+      $element.removeClass('is-invalid');
+      $element.find('option[value=""]').text('Selecciona una unidad de medida');
+      const id = $element.attr('id');
+      $(`label[for='${id}']`).text('Unidad');
+    }
+  } else {
+    if ($element.val().trim() !== '') {
+      $element.removeClass('is-invalid');
+      const defaultLabel =
+        $element.attr('id') === 'origen' ? 'Origen' : 'Destino';
+      $(`label[for='${$element.attr('id')}']`).text(defaultLabel);
+    }
   }
 }
 

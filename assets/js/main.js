@@ -1,4 +1,3 @@
-// File: js/main.js
 import {
   handleInvalidInput,
   removeInvalidClass,
@@ -28,7 +27,8 @@ $(document).ready(function () {
       handleInvalidInput(destino, '¡Coordenada inválida!');
     }
     if (unit.value === '') {
-      handleInvalidInput(unit, 'Seleccione una unidad');
+      handleInvalidInput(unit, 'Selecciona una unidad de medida');
+      unit.style.color = '#dc3545'; // rojo solo para esa opción
     }
 
     if (
