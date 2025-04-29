@@ -21,14 +21,14 @@ export function distance(lat1, lon1, lat2, lon2) {
 
 export function convertUnits(distance, unit) {
   switch (unit) {
-    case 'km':
-      return distance;
-    case 'mi':
-      return distance * 0.621371;
-    case 'm':
-      return distance * 1000;
-    default:
-      return distance;
+  case 'km':
+    return distance;
+  case 'mi':
+    return distance * 0.621371;
+  case 'm':
+    return distance * 1000;
+  default:
+    return distance;
   }
 }
 

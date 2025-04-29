@@ -10,7 +10,9 @@ export function showResults(origen, destino, distance, unit, hours, minutes) {
     La distancia entre: <span class="info">${origen}</span> y 
     <span class="info">${destino}</span> es de 
     <span class="info">${distance} ${unitName}</span><br>
-    El tiempo estimado es: <span class="info">${('0' + hours).slice(-2)} horas y ${('0' + minutes).slice(-2)} minutos</span>
+    El tiempo estimado es: <span class="info">${('0' + hours).slice(
+    -2
+  )} horas y ${('0' + minutes).slice(-2)} minutos</span>
   `);
   $('#outputModal').modal('show');
 }
@@ -24,12 +26,11 @@ export function clearInputs() {
       return $(this).attr('id') === 'origen' ? 'Origen' : 'Destino';
     });
 
-  const $unitSelect = $('#unit');
-  $unitSelect
+  $('#unit')
     .removeClass('is-invalid')
     .find('option[value=""]')
     .text('Selecciona una unidad de medida');
-  $unitSelect.prop('selectedIndex', -1).val('');
+  $('#unit').prop('selectedIndex', -1).val('');
 
   $("label[for='origen']").text('Origen');
   $("label[for='destino']").text('Destino');
