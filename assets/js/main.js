@@ -1,5 +1,9 @@
 // File: js/main.js
-import { handleInvalidInput, removeInvalidClass, isValidCoordinates } from './validation.js';
+import {
+  handleInvalidInput,
+  removeInvalidClass,
+  isValidCoordinates
+} from './validation.js';
 import { distance, convertUnits, getTimeFromDistance } from './distance.js';
 import { showResults, clearInputs } from './ui.js';
 
@@ -27,7 +31,11 @@ $(document).ready(function () {
       handleInvalidInput(unit, 'Seleccione una unidad');
     }
 
-    if ($(origen).hasClass('is-invalid') || $(destino).hasClass('is-invalid') || $(unit).hasClass('is-invalid')) {
+    if (
+      $(origen).hasClass('is-invalid') ||
+      $(destino).hasClass('is-invalid') ||
+      $(unit).hasClass('is-invalid')
+    ) {
       return;
     }
 
@@ -35,13 +43,23 @@ $(document).ready(function () {
     const [lat2, lon2] = destino.value.trim().split(',').map(Number);
 
     const distanceInKm = distance(lat1, lon1, lat2, lon2);
-    const convertedDistance = unit.value === 'km' ? distanceInKm : convertUnits(distanceInKm, unit.value);
+    const convertedDistance =
+      unit.value === 'km'
+        ? distanceInKm
+        : convertUnits(distanceInKm, unit.value);
 
     const travelTime = getTimeFromDistance(distanceInKm);
     const hours = Math.floor(travelTime / 60);
     const minutes = travelTime % 60;
 
-    showResults(origen.value.trim(), destino.value.trim(), convertedDistance.toFixed(2), unit.value, hours, minutes);
+    showResults(
+      origen.value.trim(),
+      destino.value.trim(),
+      convertedDistance.toFixed(2),
+      unit.value,
+      hours,
+      minutes
+    );
   });
 
   $('#borrar').on('click', function () {

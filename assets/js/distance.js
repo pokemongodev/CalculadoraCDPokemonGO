@@ -7,7 +7,9 @@ export function distance(lat1, lon1, lat2, lon2) {
     const radlat2 = (Math.PI * lat2) / 180;
     const theta = lon1 - lon2;
     const radtheta = (Math.PI * theta) / 180;
-    let dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+    let dist =
+      Math.sin(radlat1) * Math.sin(radlat2) +
+      Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
     if (dist > 1) dist = 1;
     dist = Math.acos(dist);
     dist = (dist * 180) / Math.PI;
@@ -19,14 +21,14 @@ export function distance(lat1, lon1, lat2, lon2) {
 
 export function convertUnits(distance, unit) {
   switch (unit) {
-    case 'km':
-      return distance;
-    case 'mi':
-      return distance * 0.621371;
-    case 'm':
-      return distance * 1000;
-    default:
-      return distance;
+  case 'km':
+    return distance;
+  case 'mi':
+    return distance * 0.621371;
+  case 'm':
+    return distance * 1000;
+  default:
+    return distance;
   }
 }
 

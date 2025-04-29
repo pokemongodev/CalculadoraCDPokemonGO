@@ -17,7 +17,11 @@ export function showResults(origen, destino, distance, unit, hours, minutes) {
 }
 
 export function clearInputs() {
-  $('#origen, #destino').val('').removeClass('is-invalid').attr('placeholder', '').attr('aria-label', '');
+  $('#origen, #destino')
+    .val('')
+    .removeClass('is-invalid')
+    .attr('placeholder', '')
+    .attr('aria-label', '');
   $('#unit').prop('selectedIndex', 0).removeClass('is-invalid');
   $("label[for='origen']").text('Origen');
   $("label[for='destino']").text('Destino');

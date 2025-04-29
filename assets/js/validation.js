@@ -8,7 +8,8 @@ export function handleInvalidInput($inputElement, message) {
 export function removeInvalidClass(inputElement) {
   if ($(inputElement).val().trim() !== '') {
     $(inputElement).removeClass('is-invalid');
-    const defaultLabel = $(inputElement).attr('id') === 'origen' ? 'Origen' : 'Destino';
+    const defaultLabel =
+      $(inputElement).attr('id') === 'origen' ? 'Origen' : 'Destino';
     $(`label[for='${$(inputElement).attr('id')}']`).text(defaultLabel);
   }
 }
