@@ -20,12 +20,22 @@ $(document).ready(function () {
     const destino = $('#destino')[0];
     const unit = $('#unit')[0];
 
+    let invalidInputs = [];
+
     if (!isValidCoordinates(origen.value.trim())) {
-      handleInvalidInput(origen, '¡Coordenada inválida!');
+      invalidInputs.push(origen);
     }
+
     if (!isValidCoordinates(destino.value.trim())) {
-      handleInvalidInput(destino, '¡Coordenada inválida!');
+      invalidInputs.push(destino);
     }
+
+    if (invalidInputs.length > 0) {
+      invalidInputs.forEach((input) =>
+        handleInvalidInput(input, '¡Coordenada inválida!')
+      );
+    }
+
     if (unit.value === '') {
       handleInvalidInput(unit, 'Selecciona una unidad de medida');
       unit.style.color = '#dc3545'; // rojo solo para esa opción

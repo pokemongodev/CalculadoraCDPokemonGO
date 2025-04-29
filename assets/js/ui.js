@@ -12,7 +12,7 @@ export function showResults(origen, destino, distance, unit, hours, minutes) {
     <span class="info">${distance} ${unitName}</span><br>
     El tiempo estimado es: <span class="info">${('0' + hours).slice(
     -2
-  )} horas y ${('0' + minutes).slice(-2)} minutos</span>
+  )} horas y ${('0' + minutes).slice(2)} minutos</span>
   `);
   $('#outputModal').modal('show');
 }

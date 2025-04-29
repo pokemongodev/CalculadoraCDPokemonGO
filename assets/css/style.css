@@ -25,13 +25,12 @@
   box-shadow: 0 0 5px var(--bs-danger);
 }
 
-.valid {
-  color: var(--bs-success);
+.info {
   font-weight: bold;
 }
 
-.info {
-  color: var(--bs-light);
+.valid {
+  color: var(--bs-success);
   font-weight: bold;
 }
 
@@ -44,7 +43,15 @@
   }
 
   .info {
-    color: var(--bs-dark);
+    color: var(--bs-primary);
+  }
+
+  .modal-header {
+    border-bottom: 2px solid var(--bs-dark) !important;
+  }
+
+  .modal-footer {
+    border-top: 2px solid var(--bs-dark) !important;
   }
 
   .modal-content,
@@ -55,11 +62,15 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  select,
   body,
-  input {
+  input,
+  select {
     background-color: var(--bs-dark) !important;
     color: var(--bs-light) !important;
+  }
+
+  .info {
+    color: var(--bs-warning);
   }
 
   .modal-content,
