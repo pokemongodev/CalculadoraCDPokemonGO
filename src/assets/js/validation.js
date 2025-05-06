@@ -1,4 +1,4 @@
-export function handleInvalidInput($inputElement, message) {
+export const handleInvalidInput = ($inputElement, message) => {
   const $element = $($inputElement);
   $element.addClass('is-invalid');
 
@@ -17,9 +17,9 @@ export function handleInvalidInput($inputElement, message) {
   if ($label.length) {
     $label.text(message);
   }
-}
+};
 
-export function removeInvalidClass(inputElement) {
+export const removeInvalidClass = (inputElement) => {
   const $element = $(inputElement);
 
   if ($element.is('select')) {
@@ -37,13 +37,11 @@ export function removeInvalidClass(inputElement) {
       $(`label[for='${$element.attr('id')}']`).text(defaultLabel);
     }
   }
-}
+};
 
-export function isValidCoordinate(lat, lon) {
-  return lat >= -90 && lat <= 90 && lon >= -180 && lon <= 180;
-}
+export const isValidCoordinate = (lat, lon) => lat >= -90 && lat <= 90 && lon >= -180 && lon <= 180;
 
-export function isValidCoordinates(coordinate) {
+export const isValidCoordinates = (coordinate) => {
   // Verificar que la entrada sea una cadena no vacía
   if (typeof coordinate !== 'string' || coordinate.trim() === '') {
     return false;
@@ -63,4 +61,4 @@ export function isValidCoordinates(coordinate) {
   }
 
   return isValidCoordinate(lat, lon);
-}
+};

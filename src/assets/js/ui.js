@@ -1,4 +1,4 @@
-export function showResults(origen, destino, distance, unit, hours, minutes) {
+export const showResults = (origen, destino, distance, unit, hours, minutes) => {
   const unitNames = {
     km: 'km.',
     mi: 'Millas',
@@ -13,7 +13,7 @@ export function showResults(origen, destino, distance, unit, hours, minutes) {
     <span class="info">${('0' + hours).slice(-2)} horas y ${('0' + minutes).slice(-2)} minutos</span></p>`
   );
   $('#outputModal').modal('show');
-}
+};
 export function clearInputs() {
   $('#origen, #destino')
     .val('')

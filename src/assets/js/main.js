@@ -16,7 +16,7 @@ $(document).ready(function () {
     removeInvalidClass(this);
   });
 
-  $('#calcular').on('click', function () {
+  $('#calcular').on('click', () => {
     const origen = $('#origen')[0];
     const destino = $('#destino')[0];
     const unit = $('#unit')[0];
@@ -73,7 +73,7 @@ $(document).ready(function () {
     );
   });
 
-  $('#borrar').on('click', function () {
+  $('#borrar').on('click', () => {
     clearInputs();
   });
 });

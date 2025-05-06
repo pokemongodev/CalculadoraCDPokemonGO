@@ -1,6 +1,6 @@
-export default {
+const prettierConfig = {
   arrowParens: 'always',
-  proseWrap: 'never',
+  proseWrap: 'preserve',
   printWidth: 80,
   semi: true,
   singleQuote: true,
@@ -8,3 +8,5 @@ export default {
   bracketSpacing: true,
   trailingComma: 'none'
 };
+
+export default prettierConfig;
