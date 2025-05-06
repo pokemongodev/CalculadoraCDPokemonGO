@@ -1,6 +1,6 @@
 import { configs } from '@sequencemedia/eslint-config-standard';
 // import prettierPlugin from 'eslint-plugin-prettier';
-//import prettierOptions from './prettier.config.mjs';
+// import prettierConfig from './prettier.config.mjs';
 import preferArrowFunctionsPlugin from 'eslint-plugin-prefer-arrow-functions';
 
 const eslintConfig = {
@@ -23,8 +23,8 @@ const eslintConfig = {
     }
   },
   plugins: {
+    // prettier: prettierPlugin,
     'prefer-arrow-functions': preferArrowFunctionsPlugin
-    // prettier: prettierPlugin
   },
   rules: {
     'prefer-arrow-functions/prefer-arrow-functions': [
@@ -40,19 +40,19 @@ const eslintConfig = {
       }
     ],
     'no-unused-vars': [
-      'warn', // or 'error' to make it an error
+      'warn',
       {
         vars: 'all',
         args: 'after-used',
         ignoreRestSiblings: true
       }
     ],
-    indent: ['error', 2, { MemberExpression: 'off' }],
+    'comma-dangle': ['error', 'never'],
     'linebreak-style': ['error', 'unix'],
+    //'prettier/prettier': ['error', prettierConfig],
+    indent: ['error', 2, { MemberExpression: 'off' }],
     quotes: ['error', 'single', { avoidEscape: true }],
-    semi: ['error', 'always'],
-    'comma-dangle': ['error', 'never']
-    //'prettier/prettier': ['error', prettierOptions]
+    semi: ['error', 'always']
   }
 };
 
