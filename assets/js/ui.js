@@ -1,4 +1,11 @@
-export const showResults = (origen, destino, distance, unit, hours, minutes) => {
+export const showResults = (
+  origen,
+  destino,
+  distance,
+  unit,
+  hours,
+  minutes
+) => {
   const unitNames = {
     km: 'km.',
     mi: 'Millas',

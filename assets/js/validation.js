@@ -39,8 +39,6 @@ export const removeInvalidClass = (inputElement) => {
   }
 };
 
-export const isValidCoordinate = (lat, lon) => lat >= -90 && lat <= 90 && lon >= -180 && lon <= 180;
-
 export const isValidCoordinates = (coordinate) => {
   // Verificar que la entrada sea una cadena no vacía
   if (typeof coordinate !== 'string' || coordinate.trim() === '') {
@@ -52,13 +50,10 @@ export const isValidCoordinates = (coordinate) => {
     return false; // Formato incorrecto
   }
 
-  const coords = coordinate.split(',').map((coord) => parseFloat(coord.trim()));
-  const [lat, lon] = coords;
+  const [lat, lon] = coordinate
+    .split(',')
+    .map((coord) => parseFloat(coord.trim()));
 
-  // Verificar que lat y lon sean números válidos
-  if (isNaN(lat) || isNaN(lon)) {
-    return false; // No son números válidos
-  }
-
-  return isValidCoordinate(lat, lon);
+  // Validar rango de latitud y longitud
+  return lat >= -90 && lat <= 90 && lon >= -180 && lon <= 180;
 };
