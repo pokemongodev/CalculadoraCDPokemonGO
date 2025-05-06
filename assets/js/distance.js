@@ -1,5 +1,5 @@
 // File: js/distance.js
-export function distance(lat1, lon1, lat2, lon2) {
+export const distance = (lat1, lon1, lat2, lon2) => {
   if (lat1 === lat2 && lon1 === lon2) {
     return 0;
   } else {
@@ -17,9 +17,9 @@ export function distance(lat1, lon1, lat2, lon2) {
     dist = dist * 1.609344;
     return dist;
   }
-}
+};
 
-export function convertUnits(distance, unit) {
+export const convertUnits = (distance, unit) => {
   switch (unit) {
   case 'km':
     return distance;
@@ -30,16 +30,16 @@ export function convertUnits(distance, unit) {
   default:
     return distance;
   }
-}
+};
 
-export function getTimeFromDistance(distance) {
+export const getTimeFromDistance = (distance) => {
   for (const range of distanceTimeMapping) {
     if (distance <= range.maxDistance) {
       return range.time;
     }
   }
   return null;
-}
+};
 
 export const distanceTimeMapping = [
   { maxDistance: 0, time: 0 },
