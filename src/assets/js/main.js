@@ -6,7 +6,7 @@ import {
 import { distance, convertUnits, getTimeFromDistance } from './distance.js';
 import { showResults, clearInputs } from './ui.js';
 
-$(document).ready(function () {
+$(() => {
   // clearInputs();
   $('#origen, #destino').on('input', function () {
     removeInvalidClass(this);

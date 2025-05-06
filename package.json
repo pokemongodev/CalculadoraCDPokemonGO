@@ -5,10 +5,10 @@
   "main": "assets/js/main.js",
   "type": "module",
   "scripts": {
-    "lint:js": "eslint '**/*.js' '**/*.mjs'  --fix",
-    "lint:css": "stylelint '**/*.css' --fix",
-    "pretty": "prettier --write 'src/**/*.html' 'src/**/*.css'",
-    "lint": "npm-run-all2 lint:js lint:css",
+    "lint:js": "eslint 'src/**/*.js' '**/*.mjs'  --fix",
+    "lint:css": "stylelint 'src/**/*.css' --fix",
+    "pretty": "prettier --write 'src/**/*'",
+    "lint": "npm-run-all2 pretty lint:js lint:css",
     "prepare": "husky"
   },
   "repository": {
